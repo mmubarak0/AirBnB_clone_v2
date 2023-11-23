@@ -134,7 +134,6 @@ class HBNBCommand(cmd.Cmd):
                     except Exception:
                         li[1] = li[1].replace("_", " ")
                     new_model.__dict__.update({li[0]: li[1]})
-                print(new_model)
                 storage.new(new_model)
                 storage.save()
                 print(new_model.id)
@@ -221,9 +220,8 @@ class HBNBCommand(cmd.Cmd):
             if args not in HBNBCommand.classes:
                 print("** class doesn't exist **")
                 return
-            for k, v in storage._FileStorage__objects.items():
-                if k.split('.')[0] == args:
-                    print_list.append(str(v))
+            for k, v in storage.all(HBNBCommand.classes[args]).items():
+                print_list.append(str(v))
         else:
             for k, v in storage._FileStorage__objects.items():
                 print_list.append(str(v))
