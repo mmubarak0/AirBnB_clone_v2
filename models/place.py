@@ -25,6 +25,7 @@ class Place(BaseModel, Base):
         latitude = Column(Float, nullable=True)
         longitude = Column(Float, nullable=True)
         amenity_ids = []
+        reviews = relationship("Review", backref="place")
     else:
         city_id = ""
         user_id = ""
@@ -37,3 +38,11 @@ class Place(BaseModel, Base):
         latitude = 0.0
         longitude = 0.0
         amenity_ids = []
+
+        @property
+        def reviews(self):
+            """Getter function to get reviews."""
+            return [
+                x for x in models.storage.all(models.review.Review).values()
+                if x.id == self.id
+            ]
