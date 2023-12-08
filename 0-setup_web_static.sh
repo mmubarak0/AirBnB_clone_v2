@@ -9,7 +9,13 @@ sleep 5;
 sudo mkdir -p /data/web_static/releases/test/
 sudo mkdir -p /data/web_static/shared/
 
-sudo ln -s /data/web_static/releases/test/ /data/web_static/current
+if [ -f /data/web_static/current ]
+then
+	rm /data/web_static/current;
+	sudo ln -s /data/web_static/releases/test/ /data/web_static/current
+else
+	sudo ln -s /data/web_static/releases/test/ /data/web_static/current
+fi
 
 sudo chown -hR ubuntu:ubuntu /data/
 
