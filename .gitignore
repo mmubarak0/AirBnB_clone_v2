@@ -1,2 +1,5 @@
 file.json
 __pycache__/
+my_ssh_key
+sshd_config
+versions/
