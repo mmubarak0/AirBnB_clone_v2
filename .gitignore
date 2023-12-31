@@ -4,3 +4,4 @@ my_ssh_key
 sshd_config
 versions/
 W3C-Validator/
+7-dump.sql
