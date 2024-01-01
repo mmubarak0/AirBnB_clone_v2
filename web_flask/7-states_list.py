@@ -19,7 +19,7 @@ def states():
 
 
 @app.teardown_appcontext
-def downfunction(e):
+def downfunc(e):
     """Teardown appcontext."""
     storage.close()
 
