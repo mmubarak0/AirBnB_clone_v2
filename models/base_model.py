@@ -31,11 +31,13 @@ class BaseModel:
                 if key != "__class__":
                     setattr(self, key, kwargs[key])
             self.id = kwargs.get("id", str(uuid.uuid4()))
-            self.created_at = datetime.fromisoformat(
-                        kwargs.get("created_at", __now.isoformat())
+            self.created_at = datetime.strptime(
+                        kwargs.get("created_at", __now.isoformat()),
+                        "%Y-%m-%dT%H:%M:%S.%f"
                 )
-            self.updated_at = datetime.fromisoformat(
-                        kwargs.get("updated_at", __now.isoformat())
+            self.updated_at = datetime.strptime(
+                        kwargs.get("updated_at", __now.isoformat()),
+                        "%Y-%m-%dT%H:%M:%S.%f"
                 )
 
     def __str__(self):
