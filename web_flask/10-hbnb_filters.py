@@ -3,31 +3,22 @@
 from flask import Flask, abort, render_template
 from models import storage
 from models.state import State
+from models.amenity import Amenity
 
 
 app = Flask(__name__)
 
 
-@app.route("/states", strict_slashes=False)
+@app.route("/hbnb_filters", strict_slashes=False)
 def states():
     """List all states."""
     states = storage.all(State).values()
+    amenities = storage.all(Amenity).values()
+
     return render_template(
-        '9-states.html',
+        '10-hbnb_filters.html',
         states=states,
-        detail_view=False
-    )
-
-
-@app.route("/states/<id>", strict_slashes=False)
-def state_detail(id):
-    """List all states."""
-    key = f"State.{id}"
-    state = storage.all(State).get(key, None)
-    return render_template(
-        '9-states.html',
-        state=state,
-        detail_view=True
+        amenities=amenities,
     )
 
 

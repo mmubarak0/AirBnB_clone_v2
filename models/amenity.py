@@ -10,7 +10,7 @@ storage_engine = environ.get("HBNB_TYPE_STORAGE")
 class Amenity(BaseModel, Base):
     """Amenity class."""
 
-    __tablename__ = "amenity"
+    __tablename__ = "amenities"
     if (storage_engine == "db"):
         name = Column(String(128), nullable=False)
     else:
